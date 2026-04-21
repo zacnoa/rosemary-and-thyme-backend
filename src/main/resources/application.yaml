@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: rosemary-and-thyme-backend
