@@ -1,0 +1,24 @@
+services:                          # definira kontejnere koje želiš pokrenuti
+  postgres:                        # naziv servisa (koristiš ga za spajanje između servisa)
+    image: postgres:16             # koju Docker sliku koristi (verzija 16)
+    environment:                   # environment varijable unutar kontejnera
+      POSTGRES_DB: recipes_db      # naziv baze koja se automatski kreira
+      POSTGRES_USER: noa      # korisničko ime
+      POSTGRES_PASSWORD: noa  # lozinka
+    ports:
+      - "5432:5432"                # HOST:KONTEJNER - izlaže port van na tvoj PC
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # čuva podatke i nakon restarta kontejnera
+
+  pgadmin:
+    image: dpage/pgadmin4          # pgAdmin slika
+    environment:
+      PGADMIN_DEFAULT_EMAIL: noa@noa.com    # login za pgAdmin sučelje
+      PGADMIN_DEFAULT_PASSWORD: noa
+    ports:
+      - "5050:80"                  # pgAdmin dostupan na localhost:5050
+    depends_on:
+      - postgres                   # čeka da postgres krene prije pgAdmina
+
+volumes:
+  postgres_data:                   # definira named volume - Docker upravlja gdje se podaci čuvaju
