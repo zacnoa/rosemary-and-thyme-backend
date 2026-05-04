@@ -28,6 +28,8 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     runtimeOnly("org.postgresql:postgresql")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("com.cloudinary:kotlin-url-gen:1.11.0")
 }
 
 kotlin {
